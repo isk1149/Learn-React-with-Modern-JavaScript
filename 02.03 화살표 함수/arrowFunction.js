@@ -49,7 +49,7 @@ console.log(func5("nushida", 25));
 const func6 = (x) => (x > 0 ? "positive" : "negative");
 console.log(func6(10));
 
-// 즉시 실행 함수수
+// 즉시 실행 함수
 const func7 = () =>
   (function () {
     return "hello";
