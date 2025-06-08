@@ -11,9 +11,13 @@ console.log(fee); // 100
   연잔자의 왼쪽이 true라고 판정되면 왼쪽을 반환한다.
 */
 
-const num2 = 100;
-const fee2 = num2 && "무언가 설정되었습니다.";
-console.log(fee2);
+let num2 = 100;
+let fee2 = num2 && "무언가 설정되었습니다.";
+console.log(fee2); // "무언가 설정되었습니다."
+
+num2 = null;
+fee2 = num2 && "무언가 설정되었습니다.";
+console.log(fee2); // null
 /*
   논리 연산자 &&는
   연잔자의 왼쪽이 true라고 판정되면 오른쪽을 반환한다.

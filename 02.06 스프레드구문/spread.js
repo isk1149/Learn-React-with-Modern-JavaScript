@@ -35,6 +35,8 @@ const obj5 = { val3: 30, val4: 40 };
 
 const obj6 = { ...obj4 };
 const obj7 = { ...obj4, ...obj5 };
+//console.log(...obj4); // 이런 건 불가능
+//console.log(...obj5); // 이런 건 불가능
 console.log(obj6);
 console.log(obj7);
 
