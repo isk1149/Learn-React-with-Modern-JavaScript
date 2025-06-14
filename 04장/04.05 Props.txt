@@ -1,0 +1,60 @@
+Props는 컴포넌트에 전달하는 인수와 같은 것으로, 
+컴포넌트는 전달받은 Props에 따라 표시하는 스타일과 내용을 변경한다.
+
+Props를 사용하려면 전달하는 쪽은 컴포넌트 태그 안에 임의의 이름을 붙여 Props를 전달한다.
+<ColoredMessage color="blue" message="잘 지내시죠?" />
+
+Props를 전달 받는 컴포넌트에서도도 임의의 이름(일반적으로 props)로 받는다.
+export const ColoredMessage = (props) => {
+  const contentStyle = {
+    color: props.color,
+    fontSize: "20px",
+  };
+
+  return <p style={contentStyle}>{props.message}</p>;
+};
+
+특별한 Props로 children이 있다. 컴포넌트도 일반적인 HTML 태그와 같이 태그 사이에 값을 감쌀 수 있다.
+이 둘러싸인 부분이 children으로 Props에 전달된다.
+<ColoredMessage color="blue">잘 지내시죠???</ColoredMessage> -> return <p style={contentStyle}>{props.children}</p>;
+
+children은 다음과 같이 태그로 감싼 요소를 묶어서 전달할 수도 있다.
+<SomeComponent>
+  <div>
+    <p>text</p>
+  </div>
+</SomeComponent>
+->
+SomeComponent의 children으로 다음을 전달.
+<div>
+  <p>text</p>
+</div>
+
+Props는 분할 대입과 객체 생략 표기법을 적용할 수 있다.
+// 분할 대입
+export const ColoredMessage = (props) => {
+  const { color, children } = props;
+  ...
+}
+
+// 객체 생략 표기법
+export const ColoredMessage = (props) => {
+  const { color, children } = props;
+
+  const contentStyle = {
+    color, // 객체 생략 표기법
+    fontSize: "20px",
+  };
+...
+}
+
+
+다음과 같이 인수 단계에서 전개하는 패턴도 있다.
+export const ColoredMessage = ({ color, children }) => {
+  const contentStyle = {
+    color,
+    fontSize: "20px",
+  };
+
+  return <p style={contentStyle}>{children}</p>;
+};
