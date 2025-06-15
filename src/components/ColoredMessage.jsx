@@ -1,5 +1,11 @@
+import { useEffect } from "react";
+
 export const ColoredMessage = (props) => {
   const { color, children } = props;
+
+  useEffect(() => {
+    console.log("ColoredMessage");
+  }, []);
 
   const contentStyle = {
     color,

@@ -1,0 +1,33 @@
+[normal export]
+export const SomeConponent = () => {};
+[normal import]
+import { SomeConponent } from './SomeConponent';
+import { SomeConponent as Some } from './SomeConponent'; // 별칭 사용 가능
+
+[default export]
+const SomeConponent = () => {};
+export default SomeConponent;
+[default import]
+import SomeConponent from './SomeConponent';
+import Some from './SomeConponent'; // default export는 import 시 임의의 명칭을 붙일 수 있다.
+
+
+또한 파일 한 개에서 한 번만 사용할 수 있다. 따라서 해당 파일의 내용을 모두 모아서 export하는 경우에 사용한다.
+function add(a: number, b: number) {
+  return a + b;
+}
+
+function subtract(a: number, b: number) {
+  return a - b;
+}
+
+export default {
+  add,
+  subtract,
+};
+
+// 다른 파일에서
+import utils from './utils';
+
+utils.add(1, 2);
+utils.subtract(5, 3);

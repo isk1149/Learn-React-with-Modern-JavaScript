@@ -16,7 +16,8 @@ export const ColoredMessage = (props) => {
 
 특별한 Props로 children이 있다. 컴포넌트도 일반적인 HTML 태그와 같이 태그 사이에 값을 감쌀 수 있다.
 이 둘러싸인 부분이 children으로 Props에 전달된다.
-<ColoredMessage color="blue">잘 지내시죠???</ColoredMessage> -> return <p style={contentStyle}>{props.children}</p>;
+<ColoredMessage color="blue">잘 지내시죠???</ColoredMessage>
+-> 잘 지내시죠??? 값이 children으로 Props에 전달됌. -> return <p style={contentStyle}>{props.children}</p>;
 
 children은 다음과 같이 태그로 감싼 요소를 묶어서 전달할 수도 있다.
 <SomeComponent>
