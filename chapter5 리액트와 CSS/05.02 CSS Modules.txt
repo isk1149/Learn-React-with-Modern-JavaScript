@@ -1,0 +1,19 @@
+컴포넌트별로 CSS 파일을 생성한다,(여기서는 .scss 형식)
+
+npm install node-sass
+
+파일명은 파일명.module.scss로 한다.
+임의의 이름(예제에서는 styles) 로 CSS를 import하고 각 태그의 className 속성에 정의한 클래스를 지정한다.
+import styles from "./CssModules.module.scss";
+
+export const CssModules = () => {
+  return (
+    <div className={styles.container}>
+      <p className={styles.title}>CSS Modules입니다</p>
+      <button className={styles.button}>버튼</button>
+    </div>
+  );
+};
+
+CSS 클래스명의 scope는 컴포넌트 안으로 한정된다.
+다른 컴포넌트에서 container라는 같은 이름으로 클래스명을 정의해도 충돌하지 않는다.
