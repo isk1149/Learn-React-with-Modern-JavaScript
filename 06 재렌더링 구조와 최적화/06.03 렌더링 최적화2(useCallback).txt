@@ -1,0 +1,37 @@
+함수 메모이제이션
+
+App.jsx
+const onClickReset = () => {
+  setNum(0);
+};
+
+return (
+  <>
+    <Child1 onClickReset={onClickReset} />
+  </>
+)
+
+Child1.jsx
+export const Child1 = memo((props) => {
+  const { onClickReset } = props;
+
+  return (
+      <button onClick={onClickReset}>리셋</button>
+  );
+});
+
+함수를 Props에 전달할 때 컴포넌트를 메모이제이션해도 재렌더링되는 것은 함수가 다시 생성되기 때문이다.
+함수를 다음과 같이 정의하면 재렌더링 등으로 코드가 실행될 때마다 항상 새로운 함수가 다시 생성된다.
+const onClickReset = () => {
+  setNum(0);
+};
+
+함수를 Props로 받는 자식 컴포넌트는 Props가 변화했다고 판정해 재렌더링을 하게 된다.
+이런 현상을 피하려면 함수를 메모이제이션 useCallback을 해야 한다.
+
+useCallback은 첫 번째 인수에 함수를 두 번째 인수에 의존 배열을 받는다.
+const onClickButton = useCallback(() => {
+  alert('버튼 클릭');
+}, []);
+위 코드는 의존 배열이 비어 있으므로 함수는 처음 작성된 것을 재사용하게 된다.
+의존 배열에 값을 설정했을 때는 그 값이 변경되는 시점에 다시 작성된다.

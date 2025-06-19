@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, memo, useCallback } from "react";
 import { ColoredMessage } from "./components/04 Props, useState, useEffect/ColoredMessage";
 import { CssModules } from "./components/05 cssModules/CssModules";
 import { Child1 } from "./components/06 rerendering/Child1";
@@ -6,11 +6,16 @@ import { Child4 } from "./components/06 rerendering/Child4";
 import { Button } from "./components/04 Props, useState, useEffect/Button";
 
 export const App = memo(() => {
+  console.log("App 렌더링");
   const [num, setNum] = useState(0);
 
   const onClickButton = () => {
     setNum((prev) => prev + 1);
   };
+
+  const onClickReset = useCallback(() => {
+    setNum(0);
+  }, []);
 
   return (
     <>
@@ -21,7 +26,7 @@ export const App = memo(() => {
       <p>{num}</p>
       <Button>버튼-Button.jsx</Button>
       <CssModules />
-      <Child1 />
+      <Child1 onClickReset={onClickReset} />
       <Child4 />
     </>
   );

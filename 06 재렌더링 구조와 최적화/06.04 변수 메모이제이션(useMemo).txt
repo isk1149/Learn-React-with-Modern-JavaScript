@@ -1,0 +1,18 @@
+변수 메모이제이션
+
+const sum = useMemo(() => {
+  return 1 + 3;
+}, []);
+
+첫 번째 인수의 함수에 변수에 설정할 값의 반환, 두 번째 인수에 의존 배열 설정.
+
+의존 배열이 비었다면, 최초 로딩되었을 때만 1 + 3이라는 계산을 실행하고 
+그 이후 재렌더링될 때는 최초의 값을 다시 사용할 수 있게 된다.
+의존 배열에 변수를 설정해두면 그 값이 변했을 때만 변수를 재설정할 수 있다.
+
+프런트엔드 성능 판단 지표
+구글의 Core Web Vitals
+
+LCP(Largest Concertful Paint) 사이트 표시 속도
+FID(First Input Delay)        사용자 입력 반응 속도
+CLS(Cumulative Layout Shift)  레이아웃 어긋남 발생 여부
