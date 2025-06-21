@@ -1,9 +1,10 @@
 import { useState, memo, useCallback } from "react";
 import { ColoredMessage } from "./components/04 Props, useState, useEffect/ColoredMessage";
-import { CssModules } from "./components/05 cssModules/CssModules";
+import { CssModules } from "./components/05 CSS Modules/CssModules";
 import { Child1 } from "./components/06 rerendering/Child1";
 import { Child4 } from "./components/06 rerendering/Child4";
 import { Button } from "./components/04 Props, useState, useEffect/Button";
+import { Card } from "./components/07 Global State Management/Card";
 
 export const App = memo(() => {
   console.log("App 렌더링");
@@ -17,6 +18,9 @@ export const App = memo(() => {
     setNum(0);
   }, []);
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const onCliciSwitch = () => setIsAdmin(!isAdmin);
+
   return (
     <>
       <h1 style={{ color: "red" }}>안녕하세요.</h1>
@@ -26,8 +30,14 @@ export const App = memo(() => {
       <p>{num}</p>
       <Button>버튼-Button.jsx</Button>
       <CssModules />
+
+      {/* 관리자 플래그가 true일 때와 그렇지 않을 때 문자열 출력 구분 */}
+      {isAdmin ? <span>관리자입니다.</span> : <span>관리자가 아닙니다.</span>}
+      <button onClick={onCliciSwitch}>전환</button>
+      <Card isAdmin={isAdmin} />
+
       <Child1 onClickReset={onClickReset} />
-      <Child4 />
+      <Child4 num={num} />
     </>
   );
 });

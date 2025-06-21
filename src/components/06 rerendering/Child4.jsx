@@ -6,7 +6,8 @@ const style = {
   padding: "8px",
 };
 
-export const Child4 = memo(() => {
+export const Child4 = memo((props) => {
+  const { num } = props;
   console.log("Child4 렌더링");
 
   return (
