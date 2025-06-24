@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Button = ({ children }) => {
+export const Button = ({ children }: any) => {
   const [num, setNum] = useState(0);
 
   const onClickButton = () => {

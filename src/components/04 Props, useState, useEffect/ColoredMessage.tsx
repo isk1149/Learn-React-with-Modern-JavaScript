@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const ColoredMessage = (props) => {
+export const ColoredMessage = (props: any) => {
   const { color, children } = props;
 
   useEffect(() => {

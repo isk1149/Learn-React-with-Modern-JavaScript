@@ -1,6 +1,6 @@
 import { EditButton } from "./EditButton";
 
-const style = {
+const style: React.CSSProperties = {
   width: "300px",
   height: "200px",
   margin: "8px",
@@ -12,7 +12,7 @@ const style = {
   alignItems: "center",
 };
 
-export const Card = (props) => {
+export const Card = (props: any) => {
   console.log("Card 버킷 릴레이");
   // props로 isAdmn(관리자 플래그)를 받아서 EditButton 컴포넌트로 버킷 릴레이를 한다.
   const { isAdmin } = props;

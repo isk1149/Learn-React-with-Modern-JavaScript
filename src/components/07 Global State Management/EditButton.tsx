@@ -4,7 +4,7 @@ const style = {
   borderRadius: "8px",
 };
 
-export const EditButton = (props) => {
+export const EditButton = (props: any) => {
   console.log("EditButton");
   const { isAdmin } = props;
 
