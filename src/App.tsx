@@ -7,13 +7,7 @@ import { Button } from "./components/04 Props, useState, useEffect/Button";
 import { Card } from "./components/07 Global State Management/Card";
 import axios from "axios";
 import { ListItem } from "./components/08 TypeScript/ListItem";
-
-interface Comment {
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
+import type { Comment } from "./interfaces/comment";
 
 export const App = memo(() => {
   console.log("App 렌더링");

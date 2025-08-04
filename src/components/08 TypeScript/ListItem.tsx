@@ -1,10 +1,6 @@
-interface ListItemInterface {
-  id: number;
-  name: string;
-  email: string;
-}
+import type { Comment } from "../../interfaces/comment";
 
-export const ListItem = (props: ListItemInterface) => {
+export const ListItem = (props: Comment) => {
   const { id, name, email } = props;
   return (
     <p>
