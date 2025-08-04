@@ -1,14 +1,32 @@
-import { useState, memo, useCallback } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import { ColoredMessage } from "./components/04 Props, useState, useEffect/ColoredMessage";
 import { CssModules } from "./components/05 CSS Modules/CssModules";
 import { Child1 } from "./components/06 rerendering/Child1";
 import { Child4 } from "./components/06 rerendering/Child4";
 import { Button } from "./components/04 Props, useState, useEffect/Button";
 import { Card } from "./components/07 Global State Management/Card";
+import axios from "axios";
+import { ListItem } from "./components/08 TypeScript/ListItem";
+
+interface Comment {
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
 
 export const App = memo(() => {
   console.log("App 렌더링");
   const [num, setNum] = useState(0);
+  const [comments, setComments] = useState<Comment[]>([]);
+
+  useEffect(() => {
+    axios
+      .get<Comment[]>("https://jsonplaceholder.typicode.com/posts/1/comments")
+      .then((res) => {
+        setComments(res.data);
+      });
+  }, []);
 
   const onClickButton = () => {
     setNum((prev) => prev + 1);
@@ -38,6 +56,11 @@ export const App = memo(() => {
 
       <Child1 onClickReset={onClickReset} />
       <Child4 num={num} />
+      <div>
+        {comments.map((comment) => (
+          <ListItem id={comment.id} name={comment.name} email={comment.email} />
+        ))}
+      </div>
     </>
   );
 });
