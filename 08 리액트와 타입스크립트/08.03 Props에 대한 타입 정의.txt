@@ -1,0 +1,16 @@
+Props 타입 정의를 해서 사용 가능
+
+interface Comment {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export const ListItem = (props: Comment) => {
+  const { id, name, email, body = "default" } = props;
+  return (
+    <p>
+      {id}: {name}({email}) / body: {body}
+    </p>
+  );
+};

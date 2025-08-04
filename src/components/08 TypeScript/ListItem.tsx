@@ -1,10 +1,10 @@
 import type { Comment } from "../../interfaces/comment";
 
 export const ListItem = (props: Comment) => {
-  const { id, name, email } = props;
+  const { id, name, email, body } = props;
   return (
     <p>
-      {id}: {name}({email})
+      {id}: {name}({email}) / {body?.concat("!")}
     </p>
   );
 };

@@ -1,0 +1,8 @@
+axios 예제 정도만 알면 될 듯
+useEffect(() => {
+  axios
+    .get<Comment[]>("https://jsonplaceholder.typicode.com/posts/1/comments")
+    .then((res) => {
+      setComments(res.data);
+    });
+}, []);

@@ -52,7 +52,12 @@ export const App = memo(() => {
       <Child4 num={num} />
       <div>
         {comments.map((comment) => (
-          <ListItem id={comment.id} name={comment.name} email={comment.email} />
+          <ListItem
+            id={comment.id}
+            name={comment.name}
+            email={comment.email}
+            body={comment.body}
+          />
         ))}
       </div>
     </>

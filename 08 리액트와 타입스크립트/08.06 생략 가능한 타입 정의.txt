@@ -1,3 +1,5 @@
+타입 정의 속성명에 생략 가능함을 의미하는 ?를 붙일 수 있다.
+
 export interface Comment {
   id: number;
   name: string;

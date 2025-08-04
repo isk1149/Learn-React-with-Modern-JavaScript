@@ -1,0 +1,23 @@
+옵셔널 체이닝은 객체 안 속성의 존재 여부를 신경 쓰지 않고 안전하게 처리해주는 구조이다.
+예를 들어
+export interface Comment {
+  id: number;
+  name: string;
+  email: string;
+  body?: string; // 사용하는 측에서 값이 props로 넘어오지 않아도 undefined 값으로 받음
+}
+여기서 body의 경우 값이 넘어올지 아닐지 실제 값을 받기 전까지는 모른다.
+값이 넘어오지 않는다면 default 값을 넣지 않는 이상 undefined를 사용하게 되는데
+body 속성에 함수를 사용하는 코드가 있고, undefined가 넘어오게 되면 에러가 나게 된다.
+
+옵셔널 체이닝을 지정하면 속성이 존재하지 않는 경우 그 이후는 실행하지 않고 해당 시점에서 undefined를 반환한다.
+export const ListItem = (props: Comment) => {
+  const { id, name, email, body } = props;
+  return (
+    <p>
+      {id}: {name}({email}) / {body?.concat("!")}
+    </p>
+  );
+};
+
+타입 정의 시 ?가 붙어 있는 속성을 구현할 때는 기본적으로 옵셔널 체이닝을 해두면 문제가 없다.
