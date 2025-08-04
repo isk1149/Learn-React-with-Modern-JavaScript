@@ -3,7 +3,7 @@
 
 let str: string = 'A';
 let num: number = 0;
-let bool: boolean = treu;
+let bool: boolean = true;
 
 let arr1: Array<number> = [0, 1, 2];
 let arr2: number[] = [0, 1, 2];
@@ -71,7 +71,7 @@ tsconfig.json
 // target
 어떤 버전의 자바스크립트로 컴파일할 것인가를 지정
 // lib
-target에 지정한 버번에 존재하지 않는 기능을 사용할 때는 lib에 추가해 사용 가능
+target에 지정한 버전에 존재하지 않는 기능을 사용할 때는 lib에 추가해 사용 가능
 // Module
 자바스크립트는 백엔드에서 사용할 때와 프론트엔드에서 사용할 때의 모듈 패턴이 다르다.
 프론트엔드인 경우 module에 esnext, es2021 같은 것을 지정. 백엔드인 경우 commonjs를 지정
