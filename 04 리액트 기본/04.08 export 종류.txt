@@ -13,11 +13,11 @@ import Some from './SomeConponent'; // default export는 import 시 임의의 �
 
 
 또한 파일 한 개에서 한 번만 사용할 수 있다. 따라서 해당 파일의 내용을 모두 모아서 export하는 경우에 사용한다.
-function add(a: number, b: number) {
+const add = (a: number, b: number): number => {
   return a + b;
 }
 
-function subtract(a: number, b: number) {
+const subtract = (a: number, b: number): number => {
   return a - b;
 }
 
@@ -27,7 +27,7 @@ export default {
 };
 
 // 다른 파일에서
-import utils from './utils';
+import SomeComponent from './SomeComponent';
 
-utils.add(1, 2);
-utils.subtract(5, 3);
+SomeComponent.add(1, 2);
+SomeComponent.subtract(5, 3);
