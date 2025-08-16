@@ -31,7 +31,7 @@ console.log(func4(1, 2));
 
 // 참고로 다음과 같이 중괄호로 감싼 뒤 *return*을 생략하면 함수의 body처럼 인식이 되서 값이 반환되지 않는다.
 const func4_1 = (num1, num2) => {
-  num1 + num2;
+  return num1 + num2;
 };
 console.log(func4_1(1, 2)); // undefined
 
