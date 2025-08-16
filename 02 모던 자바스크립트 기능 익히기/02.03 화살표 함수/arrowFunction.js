@@ -44,10 +44,26 @@ const func5 = (val1, val2) => ({
   age: val2,
 });
 console.log(func5("nushida", 25));
+console.log(func5("nushida", 25).name);
+
+// ()를 사용하지 않으려면
+const func5_1 = (val1, val2) => {
+  return {
+    name: val1,
+    age: val2,
+  };
+};
+console.log(func5_1("nushida", 25));
+console.log(func5("nushida", 25).age);
 
 // 삼항연산
 const func6 = (x) => (x > 0 ? "positive" : "negative");
 console.log(func6(10));
+
+const func6_1 = (x) => {
+  return x > 0 ? "positive" : "negative";
+};
+console.log(func6_1(10));
 
 // 즉시 실행 함수
 const func7 = () =>
