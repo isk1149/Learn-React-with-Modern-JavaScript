@@ -8,11 +8,39 @@ import { Card } from "./components/07 Global State Management/Card";
 import axios from "axios";
 import { ListItem } from "./components/08 TypeScript/ListItem";
 import type { Comment } from "./interfaces/comment";
+import type { User } from "./interfaces/users";
+import type { UserList } from "./interfaces/userList";
 
 export const App = memo(() => {
   console.log("App 렌더링");
   const [num, setNum] = useState(0);
   const [comments, setComments] = useState<Comment[]>([]);
+
+  const [userList, setUserList] = useState<UserList[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+
+  const onClickFetchUsers = (): void => {
+    setIsLoading(true);
+    setIsError(false);
+
+    setTimeout(() => {
+      axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((result) => {
+          // 성과 이름을 결합하도록 변환
+          const users = result.data.map((user: User) => ({
+            id: user.id,
+            name: `${user.username}(${user.name})`,
+            company: user.company.name,
+          }));
+          // 사용자 목록 state 업데이트
+          setUserList(users);
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false));
+    }, 1000);
+  };
 
   useEffect(() => {
     axios
@@ -59,6 +87,20 @@ export const App = memo(() => {
             body={comment.body}
           />
         ))}
+      </div>
+
+      <div>
+        <button onClick={onClickFetchUsers}>사용자 정보 얻기</button>
+        {/* 에러 발생 시 에러 메시지 표시 */}
+        {isError && <p style={{ color: "red" }}>에러가 발생했습니다.</p>}
+        {/* 로딩 중에는 표시 전환 */}
+        {isLoading ? (
+          <p>데이터를 가져오고 있습니다.</p>
+        ) : (
+          userList.map((user) => (
+            <p key={user.id}>{`${user.id}: ${user.name}[${user.company}]`}</p>
+          ))
+        )}
       </div>
     </>
   );
