@@ -8,39 +8,16 @@ import { Card } from "./components/07 Global State Management/Card";
 import axios from "axios";
 import { ListItem } from "./components/08 TypeScript/ListItem";
 import type { Comment } from "./interfaces/comment";
-import type { User } from "./interfaces/users";
-import type { UserList } from "./interfaces/userList";
+import { useFetchUsers } from "./hooks/useFetchUsers";
 
 export const App = memo(() => {
   console.log("App 렌더링");
   const [num, setNum] = useState(0);
   const [comments, setComments] = useState<Comment[]>([]);
 
-  const [userList, setUserList] = useState<UserList[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-
-  const onClickFetchUsers = (): void => {
-    setIsLoading(true);
-    setIsError(false);
-
-    setTimeout(() => {
-      axios
-        .get("https://jsonplaceholder.typicode.com/users")
-        .then((result) => {
-          // 성과 이름을 결합하도록 변환
-          const users = result.data.map((user: User) => ({
-            id: user.id,
-            name: `${user.username}(${user.name})`,
-            company: user.company.name,
-          }));
-          // 사용자 목록 state 업데이트
-          setUserList(users);
-        })
-        .catch(() => setIsError(true))
-        .finally(() => setIsLoading(false));
-    }, 1000);
-  };
+  // 사용자 정의 훅 사용
+  // 함수를 실행하고 반환값을 분할 대입해서 전달
+  const { userList, onClickFetchUsers, isError, isLoading } = useFetchUsers();
 
   useEffect(() => {
     axios

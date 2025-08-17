@@ -1,0 +1,43 @@
+useFetchUsers.ts
+
+import { useState } from "react";
+import { UserList } from "../interfaces/userList";
+import axios from "axios";
+import { User } from "../interfaces/users";
+
+export const useFetchUsers = () => {
+  const [userList, setUserList] = useState<UserList[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+
+  const onClickFetchUsers = () => {
+    setIsLoading(true);
+    setIsError(false);
+
+    setTimeout(() => {
+      axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((result) => {
+          // 성과 이름을 결합하도록 변환
+          const users = result.data.map((user: User) => ({
+            id: user.id,
+            name: `${user.username}(${user.name})`,
+            company: user.company.name,
+          }));
+          // 사용자 목록 state 업데이트
+          setUserList(users);
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false));
+    }, 1000);
+  };
+
+  return { userList, onClickFetchUsers, isError, isLoading };
+};
+
+isLoading과 isError도 사용자 정의 훅에 구현했다. 이로써 로직을 완전히 분리했다.
+이제 다른 컴포넌트에서 사용자 목록을 얻을 때도 다음과 같이 두 행만 추가하면 이를 구현할 수 있다.
+import { useFetchUsers } from "./hooks/useFetchUsers";
+const { userList, onClickFetchUsers, isError, isLoading } = useFetchUsers();
+
+로직이 업데이트되면 useFetchUsers만 수정하면 된다.

@@ -1,0 +1,15 @@
+사용자 정의 훅은 단순 함수이며 다음과 같이 함수를 정의한다.
+
+사용자 정의 훅에서는 State나 함수 등 여러 값을 return할 때가 많으므로
+아래와 같이 객체(또는 배열)로 모아서 반환하는 경우가 많다.
+export const useFetchUsers = () => {
+  const [userList, setUserList] = useState<UserList[]>([]);
+  const onClickFetchUsers = () => {};
+
+  return { userList, onClickFetchUsers };
+};
+
+App.tsx
+// 사용자 정의 훅 사용
+// 함수를 실행하고 반환값을 분할 대입해서 전달
+const { userList, onClickFetchUsers } = useFetchUsers();
